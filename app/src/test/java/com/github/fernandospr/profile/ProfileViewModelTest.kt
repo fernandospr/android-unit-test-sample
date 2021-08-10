@@ -24,21 +24,25 @@ class ProfileViewModelTest {
 
     @Test
     fun `Updating a lifemiles id should call save on repository when lifemiles validator successfully validates`() {
-        whenever(validatorMock.isValid("1234")).thenReturn(true)
+        whenever(validatorMock.isValid(LIFEMILES_ID)).thenReturn(true)
         val viewModel = ProfileViewModel(validatorMock, repositoryMock)
 
-        viewModel.update("1234")
+        viewModel.update(LIFEMILES_ID)
 
-        verify(repositoryMock).save("1234")
+        verify(repositoryMock).save(LIFEMILES_ID)
     }
 
     @Test
     fun `Updating a lifemiles id should not call save on repository when lifemiles validator fails to validate`() {
-        whenever(validatorMock.isValid("1234")).thenReturn(false)
+        whenever(validatorMock.isValid(LIFEMILES_ID)).thenReturn(false)
         val viewModel = ProfileViewModel(validatorMock, repositoryMock)
 
-        viewModel.update("1234")
+        viewModel.update(LIFEMILES_ID)
 
-        verify(repositoryMock, never()).save("1234")
+        verify(repositoryMock, never()).save(LIFEMILES_ID)
+    }
+
+    private companion object {
+        const val LIFEMILES_ID = "1234"
     }
 }
