@@ -3,20 +3,23 @@ package com.github.fernandospr.profile
 import com.github.fernandospr.validators.LifemilesIdValidator
 import org.junit.Before
 import org.junit.Test
-import org.mockito.kotlin.mock
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.never
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 class ProfileViewModelTest {
 
+    @Mock
     private lateinit var validatorMock: LifemilesIdValidator
+
+    @Mock
     private lateinit var repositoryMock: ProfileRepository
 
     @Before
     fun setup() {
-        validatorMock = mock()
-        repositoryMock = mock()
+        MockitoAnnotations.openMocks(this)
     }
 
     @Test
