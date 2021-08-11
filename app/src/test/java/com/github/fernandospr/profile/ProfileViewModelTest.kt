@@ -1,6 +1,7 @@
 package com.github.fernandospr.profile
 
 import com.github.fernandospr.validators.LifemilesIdValidator
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -11,6 +12,8 @@ import org.mockito.kotlin.whenever
 
 class ProfileViewModelTest {
 
+    private lateinit var autoCloseable: AutoCloseable
+
     @Mock
     private lateinit var validatorMock: LifemilesIdValidator
 
@@ -19,7 +22,12 @@ class ProfileViewModelTest {
 
     @Before
     fun setup() {
-        MockitoAnnotations.openMocks(this)
+        autoCloseable = MockitoAnnotations.openMocks(this)
+    }
+
+    @After
+    fun teardown() {
+        autoCloseable.close()
     }
 
     @Test
